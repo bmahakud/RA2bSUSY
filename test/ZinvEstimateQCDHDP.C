@@ -1187,7 +1187,7 @@ printf(" %i :%i |%i| %4.3f(%4.3f) |%i| %4.3f(%4.3f) |%4.3f(%4.3f,+%4.3f-%4.3f)| 
    */
 
    plot.plotHist(h_Ndata18binEB,h_NGJets18binEB,h_NQCD18binEB,c[13],"EB","Data","MC","ith-Bin-EB");
-   cin>>a;
+   
    plot.plotHist(h_Ndata18binEC,h_NGJets18binEC,h_NQCD18binEC,c[14],"EE","Data","MC","ith-Bin-EE");
 
 

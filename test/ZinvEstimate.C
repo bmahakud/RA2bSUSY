@@ -1157,46 +1157,46 @@ printf(" %i :%i |%i| %4.3f(%4.3f) |%i| %4.3f(%4.3f) |%4.3f(%4.3f,+%4.3f-%4.3f)| 
   cout<<"prompt fraction: "<<promptfrac<<endl;
 
   
-  /*
+  
    plot.plotHist(hHT_Data,hHT_GJets,hHT_QCD,c[0],"","Data","MC","HT");
-   cin>>a;
+   
    plot.plotHist(hMHT_Data,hMHT_GJets,hMHT_QCD,c[1],"","Data","MC","MHT");
-   cin>>a;
+   
    plot.plotHist(hNJets_Data,hNJets_GJets,hNJets_QCD,c[2],"","Data","MC","Njets");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataEB,hSieta_GJetsEB,hSieta_QCDEB,c[3],"EB","Data","MC","SigmaIetaIeta_EB");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataEBLow,hSieta_GJetsEBLow,hSieta_QCDEBLow,c[4],"Low-MHT-EB","Data","MC","SigmaIetaIeta_EB");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataEBMed,hSieta_GJetsEBMed,hSieta_QCDEBMed,c[5],"Med-MHT-EB","Data","MC","SigmaIetaIeta_EB");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataEBHigh,hSieta_GJetsEBHigh,hSieta_QCDEBHigh,c[6],"High-MHT-EB","Data","MC","SigmaIetaIeta_EB");
-   cin>>a;
+   
 
    plot.plotHist(hSieta_DataEC,hSieta_GJetsEC,hSieta_QCDEC,c[7],"EE","Data","MC","SigmaIetaIeta_EE");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataECLow,hSieta_GJetsECLow,hSieta_QCDECLow,c[8],"Low-MHT-EE","Data","MC","SigmaIetaIeta_EE");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataECMed,hSieta_GJetsECMed,hSieta_QCDECMed,c[9],"Med-MHT-EE","Data","MC","SigmaIetaIeta_EE");
-   cin>>a;
+   
    plot.plotHist(hSieta_DataECHigh,hSieta_GJetsECHigh,hSieta_QCDECHigh,c[10],"High-MHT-EE","Data","MC","SigmaIetaIeta_EE");   
 
 
-   cin>>a;
+   
    
    plot.plotHist(hPhPt_DataEB,hPhPt_GJetsEB,hPhPt_QCDEB,c[11],"EB","Data","MC","PhotonPt_EB");
 
-   cin>>a;
+   
 
    plot.plotHist(hPhPt_DataEC,hPhPt_GJetsEC,hPhPt_QCDEC,c[12],"EE","Data","MC","PhotonPt_EE");
 
-   cin>>a;
+   
 
    plot.plotHist(h_Ndata18binEB,h_NGJets18binEB,h_NQCD18binEB,c[13],"EB","Data","MC","ith-Bin-EB");
-   cin>>a;
+   
    plot.plotHist(h_Ndata18binEC,h_NGJets18binEC,h_NQCD18binEC,c[14],"EE","Data","MC","ith-Bin-EE");
 
-   */
+   
 
   
   
