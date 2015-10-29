@@ -3,7 +3,7 @@ in 'cmslpc'.
 
 ```
 git clone https://github.com/bmahakud/RA2bSUSY
-cd test
+cd RA2bSUSY/test
 root -l -q ZinvEstimate.C
 root -l -q ZinvEstimateQCDHDP.C
 root -l -q ZinvEstimateQCDLDP.C
