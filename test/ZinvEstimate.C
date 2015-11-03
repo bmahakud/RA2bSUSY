@@ -22,7 +22,7 @@ void ZinvEstimate(){//main programme
      //Important
      //In kevins v3 production due to a bug puWeight is divided to all standard MC weights ...this should be removed 
      //from the code if you are using it for version otherthan V3
-
+     TString InputFilePathV4="/eos/uscms/store/user/pedrok/SUSY2015/Analysis/Skims/Run2ProductionV4/";
 
      TString InputFilePathV3="/eos/uscms/store/user/pedrok/SUSY2015/Analysis/Skims/Run2ProductionV3/";
 
@@ -32,13 +32,13 @@ void ZinvEstimate(){//main programme
 
 
      TChain* tZinv = new TChain("tree");
-     tZinv->Add(InputFilePathV3+"tree_signal/tree_ZJetsToNuNu_HT*.root");
+     tZinv->Add(InputFilePathV4+"tree_signal/tree_ZJetsToNuNu_HT*.root");
      ReadTree Zinv(tZinv);
 
 
      //reading the GJets MC
      TChain* tGJets = new TChain("tree");
-     tGJets->Add(InputFilePathV3+"tree_GJet_CleanVars/tree_GJets_HT-*.root");
+     tGJets->Add(InputFilePathV4+"tree_GJet_CleanVars/tree_GJets_HT-*.root");
      ReadTree GJets(tGJets);
 
 
@@ -47,15 +47,15 @@ void ZinvEstimate(){//main programme
 
      //reading QCD MC
      TChain* tQCD = new TChain("tree");
-     tQCD->Add(InputFilePathV3+"tree_GJet_CleanVars/tree_QCD_HT*.root");
+     tQCD->Add(InputFilePathV4+"tree_GJet_CleanVars/tree_QCD_HT*.root");
      ReadTree QCD(tQCD);
 
      //reading Single photon Data
      TChain* tData = new TChain("tree");
-     tData->Add(InputFilePathV3+"tree_GJet_CleanVars/tree_SinglePhoton_*.root");
+     tData->Add(InputFilePathV4+"tree_GJet_CleanVars/tree_SinglePhoton_*.root");
      ReadTree Data(tData);
 
-     double Lumi=1286.553;
+     double Lumi=1280.23;
 
 
      int nBinsHT=13;
@@ -214,8 +214,8 @@ void ZinvEstimate(){//main programme
                      
          
 
-          h_NZinv18bin->Fill(binNumber_Zinv,(Lumi*Zinv.Weight)/Zinv.puWeight);      
-          h_NZinv18binC->Fill(binNumber_Zinv,(Lumi*Zinv.Weight)/Zinv.puWeight);
+          h_NZinv18bin->Fill(binNumber_Zinv,(Lumi*Zinv.Weight));      
+          h_NZinv18binC->Fill(binNumber_Zinv,(Lumi*Zinv.Weight));
 
 
        }
@@ -247,30 +247,30 @@ void ZinvEstimate(){//main programme
      if(binNumber_GJets >-1 && GJets.BTagsclean==0 && index !=-1 && GJets.photon_nonPrompt->at(index) !=1){//Filling Yield(N_Obsereved) in GJets MC
          
  
-         hHT_GJets->Fill(GJets.HTclean,Lumi*GJets.Weight/(GJets.puWeight));
-         hMHT_GJets->Fill(GJets.MHTclean,Lumi*GJets.Weight/(GJets.puWeight));
-         hNJets_GJets->Fill(GJets.NJetsclean,Lumi*GJets.Weight/(GJets.puWeight));  
-         h_NGJets18bin->Fill(binNumber_GJets,Lumi*GJets.Weight/(GJets.puWeight));
+         hHT_GJets->Fill(GJets.HTclean,Lumi*GJets.Weight);
+         hMHT_GJets->Fill(GJets.MHTclean,Lumi*GJets.Weight);
+         hNJets_GJets->Fill(GJets.NJetsclean,Lumi*GJets.Weight);  
+         h_NGJets18bin->Fill(binNumber_GJets,Lumi*GJets.Weight);
        
 
 
          if(fabs(GJets.bestPhoton->at(0).Eta())< 1.4442){//barrel
-         hSieta_GJetsEB->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
-         h_NGJets18binEB->Fill(binNumber_GJets,Lumi*GJets.Weight/(GJets.puWeight));
-         hPhPt_GJetsEB->Fill(GJets.photonCands->at(index).Pt(),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsEB->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
+         h_NGJets18binEB->Fill(binNumber_GJets,Lumi*GJets.Weight);
+         hPhPt_GJetsEB->Fill(GJets.photonCands->at(index).Pt(),Lumi*GJets.Weight);
          ////////////////////////////////////Sieta in MHT bins
          if(GJets.MHTclean >MHTbin1Min && GJets.MHTclean< MHTbin1Max){
-         hSieta_GJetsEBLow->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsEBLow->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
 
 
          if(GJets.MHTclean >MHTbin2Min && GJets.MHTclean< MHTbin2Max){
-         hSieta_GJetsEBMed->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsEBMed->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
 
 
          if(GJets.MHTclean >MHTbin3Min && GJets.MHTclean< MHTbin3Max){
-         hSieta_GJetsEBHigh->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsEBHigh->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
           
 
@@ -281,24 +281,24 @@ void ZinvEstimate(){//main programme
 
               }//barrel
          if(fabs(GJets.bestPhoton->at(0).Eta())> 1.566 && fabs(GJets.bestPhoton->at(0).Eta())< 2.5){//endcap
-         hSieta_GJetsEC->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
-         h_NGJets18binEC->Fill(binNumber_GJets,Lumi*GJets.Weight/(GJets.puWeight));
-         hPhPt_GJetsEC->Fill(GJets.photonCands->at(index).Pt(),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsEC->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
+         h_NGJets18binEC->Fill(binNumber_GJets,Lumi*GJets.Weight);
+         hPhPt_GJetsEC->Fill(GJets.photonCands->at(index).Pt(),Lumi*GJets.Weight);
 
 
          ////////////////////////////////////Sieta in MHT bins
          if(GJets.MHTclean >MHTbin1Min && GJets.MHTclean< MHTbin1Max){
-         hSieta_GJetsECLow->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsECLow->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
 
 
          if(GJets.MHTclean >MHTbin2Min && GJets.MHTclean< MHTbin2Max){
-         hSieta_GJetsECMed->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsECMed->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
 
 
          if(GJets.MHTclean >MHTbin3Min && GJets.MHTclean< MHTbin3Max){
-         hSieta_GJetsECHigh->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight/(GJets.puWeight));
+         hSieta_GJetsECHigh->Fill(GJets.photon_sigmaIetaIeta->at(index),Lumi*GJets.Weight);
              }
           
 
@@ -340,31 +340,31 @@ void ZinvEstimate(){//main programme
      int index=QCD.photonIndex();
      if(binNumber_QCD >-1 && QCD.BTagsclean==0 && index !=-1 && QCD.photon_nonPrompt->at(index) ==1 ){//Filling Yield(N_Obsereved) in QCD MC
          
-         hHT_QCD->Fill(QCD.HTclean,Lumi*QCD.Weight/(QCD.puWeight));
-         hMHT_QCD->Fill(QCD.MHTclean,Lumi*QCD.Weight/(QCD.puWeight));
-         hNJets_QCD->Fill(QCD.NJetsclean,Lumi*QCD.Weight/(QCD.puWeight));
+         hHT_QCD->Fill(QCD.HTclean,Lumi*QCD.Weight);
+         hMHT_QCD->Fill(QCD.MHTclean,Lumi*QCD.Weight);
+         hNJets_QCD->Fill(QCD.NJetsclean,Lumi*QCD.Weight);
          
 
 
          if(fabs(QCD.bestPhoton->at(0).Eta())< 1.4442){//barrel
-         hSieta_QCDEB->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
-         h_NQCD18binEB->Fill(binNumber_QCD,Lumi*QCD.Weight/(QCD.puWeight));
-         hPhPt_QCDEB->Fill(QCD.photonCands->at(index).Pt(),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDEB->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
+         h_NQCD18binEB->Fill(binNumber_QCD,Lumi*QCD.Weight);
+         hPhPt_QCDEB->Fill(QCD.photonCands->at(index).Pt(),Lumi*QCD.Weight);
 
 
          ////////////////////////////////////Sieta in MHT bins
          if(QCD.MHTclean >MHTbin1Min && QCD.MHTclean< MHTbin1Max){
-         hSieta_QCDEBLow->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDEBLow->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
 
 
          if(QCD.MHTclean >MHTbin2Min && QCD.MHTclean< MHTbin2Max){
-         hSieta_QCDEBMed->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDEBMed->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
 
 
          if(QCD.MHTclean >MHTbin3Min && QCD.MHTclean< MHTbin3Max){
-         hSieta_QCDEBHigh->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDEBHigh->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
           
 
@@ -382,25 +382,25 @@ void ZinvEstimate(){//main programme
 
               }//barrel
          if(fabs(QCD.bestPhoton->at(0).Eta())> 1.566 && abs(QCD.bestPhoton->at(0).Eta()) <2.5 ){//endcap
-         hSieta_QCDEC->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
-         h_NQCD18binEC->Fill(binNumber_QCD,Lumi*QCD.Weight/(QCD.puWeight));
-         hPhPt_QCDEC->Fill(QCD.photonCands->at(index).Pt(),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDEC->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
+         h_NQCD18binEC->Fill(binNumber_QCD,Lumi*QCD.Weight);
+         hPhPt_QCDEC->Fill(QCD.photonCands->at(index).Pt(),Lumi*QCD.Weight);
              }//endcap
 
 
          ////////////////////////////////////Sieta in MHT bins
          if(QCD.MHTclean >MHTbin1Min && QCD.MHTclean< MHTbin1Max){
-         hSieta_QCDECLow->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDECLow->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
 
 
          if(QCD.MHTclean >MHTbin2Min && QCD.MHTclean< MHTbin2Max){
-         hSieta_QCDECMed->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDECMed->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
 
 
          if(QCD.MHTclean >MHTbin3Min && QCD.MHTclean< MHTbin3Max){
-         hSieta_QCDECHigh->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight/(QCD.puWeight));
+         hSieta_QCDECHigh->Fill(QCD.photon_sigmaIetaIeta->at(index),Lumi*QCD.Weight);
              }
           
 
